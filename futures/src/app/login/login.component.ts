@@ -8,13 +8,27 @@ import crypto from "crypto-js";
   styleUrls: ["./login.component.css"]
 })
 export class LoginComponent implements OnInit {
-   username = "MN10001846";
-   password = 123456;
+  username = "MN10001846";
+  password = 123456;
+
   constructor(private trade: TradeService) {
   }
 
   ngOnInit() {
-    this.trade.login().subscribe(data => console.log(data));
+    this.trade.login().subscribe(data => {
+      console.log(data);
+      const password = this.encodePwd(data.MSG, this.username, this.password);
+      const cmd_str = {
+        "CMD": 8000,
+        Version: 0,
+        IsReal: 0,
+        "MSG": {
+          "Account": this.username,
+          "Password": password
+        }
+      };
+      this.trade.sendMsg(JSON.stringify(cmd_str));
+    });
   }
 
   encodePwd(Salt_data, username, password): string {

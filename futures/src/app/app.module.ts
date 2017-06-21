@@ -5,6 +5,7 @@ import {HttpModule} from "@angular/http";
 import {AppComponent} from "./app.component";
 import {SharedModule} from "./shared/shared.module";
 import {LoginComponent} from "./login/login.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import {LoginComponent} from "./login/login.component";
     BrowserModule,
     FormsModule,
     HttpModule,
+    BrowserAnimationsModule,
     SharedModule
   ],
   providers: [],
